@@ -1,0 +1,684 @@
+zabbix_export:
+  version: '6.4'
+  template_groups:
+    - uuid: 7df96b18c230490a9a0a9e2307226338
+      name: Templates
+  templates:
+    - uuid: 1100382624544b09b40ea63f5c24f157
+      template: 'Template Bacula'
+      name: 'Template Bacula'
+      groups:
+        - name: Templates
+      items:
+        - uuid: 3ad7999918ff4da7b2f302015c713ccc
+          name: 'Backup Differential Bytes'
+          type: TRAP
+          key: bacula.diff.job.bytes
+          units: B
+          tags:
+            - tag: Application
+              value: Bacula
+        - uuid: 6ff9c19a60f34ec7aa1074dc3ac6ac4f
+          name: 'Backup Differential Compression'
+          type: TRAP
+          key: bacula.diff.job.compr
+          value_type: FLOAT
+          tags:
+            - tag: Application
+              value: Bacula
+        - uuid: 9c65de66f0a447caa149447c436c5527
+          name: 'Backup Differential Files'
+          type: TRAP
+          key: bacula.diff.job.files
+          tags:
+            - tag: Application
+              value: Bacula
+        - uuid: fefdc2f4ef1a40d1864f3d7b3d67c4cf
+          name: 'Backup Differential Speed'
+          type: TRAP
+          key: bacula.diff.job.speed
+          value_type: FLOAT
+          units: KB/s
+          tags:
+            - tag: Application
+              value: Bacula
+        - uuid: f7d38d4e07714fe69cf13b8819b2d09c
+          name: 'Backup Differential OK'
+          type: TRAP
+          key: bacula.diff.job.status
+          tags:
+            - tag: Application
+              value: Bacula
+          triggers:
+            - uuid: 80b4fcf5deaa464188495f57c53fcb2d
+              expression: 'last(/Template Bacula/bacula.diff.job.status)>1'
+              name: 'Backup Differential FAIL in {HOST.NAME}'
+              priority: AVERAGE
+        - uuid: 8e797c898f0a4fdc8d0b661a742d8f8b
+          name: 'Backup Differential Time'
+          type: TRAP
+          key: bacula.diff.job.time
+          units: s
+          tags:
+            - tag: Application
+              value: Bacula
+        - uuid: 4de1bc4dbc274085a9731a4be4027b0e
+          name: 'Backup Full Bytes'
+          type: TRAP
+          key: bacula.full.job.bytes
+          units: B
+          tags:
+            - tag: Application
+              value: Bacula
+        - uuid: 439cc473445e48658239ea84ee4f9a57
+          name: 'Backup Full Compression'
+          type: TRAP
+          key: bacula.full.job.compr
+          value_type: FLOAT
+          tags:
+            - tag: Application
+              value: Bacula
+        - uuid: e09d956cf8ab4c259d50e780b17f7d25
+          name: 'Backup Full Files'
+          type: TRAP
+          key: bacula.full.job.files
+          tags:
+            - tag: Application
+              value: Bacula
+        - uuid: 46670c1c9bc242e5a629d26d89e84450
+          name: 'Backup Full Speed'
+          type: TRAP
+          key: bacula.full.job.speed
+          value_type: FLOAT
+          units: KB/s
+          tags:
+            - tag: Application
+              value: Bacula
+        - uuid: 06e81a5e97264494986ce9c6f5fe135d
+          name: 'Backup Full OK'
+          type: TRAP
+          key: bacula.full.job.status
+          tags:
+            - tag: Application
+              value: Bacula
+          triggers:
+            - uuid: 1b6c1bcf5a684bef99d50fb1582abe27
+              expression: 'last(/Template Bacula/bacula.full.job.status)>1'
+              name: 'Backup Full FAIL in {HOST.NAME}'
+              priority: HIGH
+        - uuid: 96b4480f70e448eca6d48f44baf6f716
+          name: 'Backup Full Time'
+          type: TRAP
+          key: bacula.full.job.time
+          units: s
+          tags:
+            - tag: Application
+              value: Bacula
+        - uuid: d3f71da5d0a14239ad8a5393ca1fb777
+          name: 'Backup Incremental Bytes'
+          type: TRAP
+          key: bacula.incr.job.bytes
+          units: B
+          tags:
+            - tag: Application
+              value: Bacula
+        - uuid: 40193f25d5a64f2db3a8bf2bba9ac66c
+          name: 'Backup Incremental Compression'
+          type: TRAP
+          key: bacula.incr.job.compr
+          value_type: FLOAT
+          tags:
+            - tag: Application
+              value: Bacula
+        - uuid: 5b002a76d411479fb8a937580024c1e2
+          name: 'Backup Incremental Files'
+          type: TRAP
+          key: bacula.incr.job.files
+          tags:
+            - tag: Application
+              value: Bacula
+        - uuid: 0bdcc2a716de47d0a7632269dd2df5e8
+          name: 'Backup Incremental Speed'
+          type: TRAP
+          key: bacula.incr.job.speed
+          value_type: FLOAT
+          units: KB/s
+          tags:
+            - tag: Application
+              value: Bacula
+        - uuid: 8c0f3bd9e5e64ee68c47e26acbd2f895
+          name: 'Backup Incremental OK'
+          type: TRAP
+          key: bacula.incr.job.status
+          tags:
+            - tag: Application
+              value: Bacula
+          triggers:
+            - uuid: 68663c9163d14d718f53f3905b1542a3
+              expression: 'last(/Template Bacula/bacula.incr.job.status)>1'
+              name: 'Backup Incremental FAIL in {HOST.NAME}'
+              priority: WARNING
+        - uuid: ef04614a446b4049bad4c8384b2a6317
+          name: 'Backup Incremental Time'
+          type: TRAP
+          key: bacula.incr.job.time
+          units: s
+          tags:
+            - tag: Application
+              value: Bacula
+        - uuid: 4be6a77f74cb409d96299dbcab97ec1f
+          name: 'Backup Server Label Jobs'
+          type: TRAP
+          key: bacula.label.jobs
+          description: 'Verifica se algum job pracisa de disco, use o comando label se necessário'
+          tags:
+            - tag: Application
+              value: Bacula
+          triggers:
+            - uuid: 3f094c8fcb2541229812b7bf70756a11
+              expression: 'last(/Template Bacula/bacula.label.jobs)>=1'
+              name: 'Bacula Server Label Action Needed'
+              priority: DISASTER
+              description: 'Precisa Rotular ou dar Prune num volume para ser usado para o Job'
+        - uuid: d8eb3f69312741a2a3e90a88ed95373c
+          name: 'Backup Server Running Jobs'
+          type: TRAP
+          key: bacula.running.jobs
+          description: 'Conta quantos jobs rodando'
+          tags:
+            - tag: Application
+              value: Bacula
+        - uuid: 3f6fee66ea684ecc81da7dd424e1825f
+          name: 'Backup Server Running Jobs Alerta'
+          type: TRAP
+          key: bacula.running.jobs.alert
+          description: 'Conta quantos jobs rodando'
+          tags:
+            - tag: Application
+              value: Bacula
+          triggers:
+            - uuid: 1877420bbfa64029bd081c4e6305254b
+              expression: 'last(/Template Bacula/bacula.running.jobs.alert)>=1'
+              name: 'Bacula Server Running Jobs, Check Bacula for Problem'
+              priority: DISASTER
+              description: 'Não deve haver jobs rodando neste horário.'
+        - uuid: 0c56274d6a294bfb9adbff14ac32c004
+          name: 'Bacula Director is running'
+          key: 'proc.num[{$BACULA.DIR}]'
+          delay: '30'
+          status: DISABLED
+          tags:
+            - tag: Application
+              value: Bacula
+          triggers:
+            - uuid: 137371d4594e44e28c424f1f82a23f0c
+              expression: 'last(/Template Bacula/proc.num[{$BACULA.DIR}])=0'
+              name: 'Bacula Director is DOWN in {HOST.NAME}'
+              priority: DISASTER
+        - uuid: a2ec0ddbe8064c448a4a4c9f71bd4c7b
+          name: 'Bacula File is running'
+          key: 'proc.num[{$BACULA.FD}]'
+          delay: '30'
+          status: DISABLED
+          tags:
+            - tag: Application
+              value: Bacula
+          triggers:
+            - uuid: 387918d7c24742fea5e52b3c10204f09
+              expression: 'last(/Template Bacula/proc.num[{$BACULA.FD}])=0'
+              name: 'Bacula File is DOWN in {HOST.NAME}'
+              priority: HIGH
+        - uuid: 2dea8336b4c34da6ae7202765aaa46db
+          name: 'Bacula Storage is running'
+          key: 'proc.num[{$BACULA.SD}]'
+          delay: '30'
+          status: DISABLED
+          tags:
+            - tag: Application
+              value: Bacula
+          triggers:
+            - uuid: eac4c3ade84b472e885b8f1e91e9b27e
+              expression: 'last(/Template Bacula/proc.num[{$BACULA.SD}])=0'
+              name: 'Bacula Storage is DOWN in {HOST.NAME}'
+              priority: DISASTER
+      macros:
+        - macro: '{$BACULA.DIR}'
+          value: bacula-dir
+        - macro: '{$BACULA.FD}'
+          value: bacula-fd
+        - macro: '{$BACULA.SD}'
+          value: bacula-sd
+      dashboards:
+        - uuid: 2caf89765d1a45d29d6b154aeb6b675b
+          name: 'Backup Differential'
+          pages:
+            - widgets:
+                - type: graph
+                  width: '12'
+                  height: '5'
+                  fields:
+                    - type: GRAPH
+                      name: graphid
+                      value:
+                        host: 'Template Bacula'
+                        name: 'Backup Differential - Bytes transferred'
+                    - type: INTEGER
+                      name: source_type
+                      value: '0'
+                - type: graph
+                  'y': '5'
+                  width: '12'
+                  height: '5'
+                  fields:
+                    - type: GRAPH
+                      name: graphid
+                      value:
+                        host: 'Template Bacula'
+                        name: 'Backup Differential - Elapsed time'
+                    - type: INTEGER
+                      name: source_type
+                      value: '0'
+                - type: graph
+                  'y': '10'
+                  width: '12'
+                  height: '5'
+                  fields:
+                    - type: GRAPH
+                      name: graphid
+                      value:
+                        host: 'Template Bacula'
+                        name: 'Backup Differential - Compression rate'
+                    - type: INTEGER
+                      name: source_type
+                      value: '0'
+                - type: graph
+                  x: '12'
+                  width: '12'
+                  height: '5'
+                  fields:
+                    - type: GRAPH
+                      name: graphid
+                      value:
+                        host: 'Template Bacula'
+                        name: 'Backup Differential - Files transferred'
+                    - type: INTEGER
+                      name: source_type
+                      value: '0'
+                - type: graph
+                  x: '12'
+                  'y': '5'
+                  width: '12'
+                  height: '5'
+                  fields:
+                    - type: GRAPH
+                      name: graphid
+                      value:
+                        host: 'Template Bacula'
+                        name: 'Backup Differential - Transfer rate'
+                    - type: INTEGER
+                      name: source_type
+                      value: '0'
+        - uuid: 79d15cad42874ef79d7feb76811aedc7
+          name: 'Backup Full'
+          pages:
+            - widgets:
+                - type: graph
+                  width: '12'
+                  height: '5'
+                  fields:
+                    - type: GRAPH
+                      name: graphid
+                      value:
+                        host: 'Template Bacula'
+                        name: 'Backup Full - Bytes transferred'
+                    - type: INTEGER
+                      name: source_type
+                      value: '0'
+                - type: graph
+                  'y': '5'
+                  width: '12'
+                  height: '5'
+                  fields:
+                    - type: GRAPH
+                      name: graphid
+                      value:
+                        host: 'Template Bacula'
+                        name: 'Backup Full - Elapsed time'
+                    - type: INTEGER
+                      name: source_type
+                      value: '0'
+                - type: graph
+                  'y': '10'
+                  width: '12'
+                  height: '5'
+                  fields:
+                    - type: GRAPH
+                      name: graphid
+                      value:
+                        host: 'Template Bacula'
+                        name: 'Backup Full - Compression rate'
+                    - type: INTEGER
+                      name: source_type
+                      value: '0'
+                - type: graph
+                  x: '12'
+                  width: '12'
+                  height: '5'
+                  fields:
+                    - type: GRAPH
+                      name: graphid
+                      value:
+                        host: 'Template Bacula'
+                        name: 'Backup Full - Files transferred'
+                    - type: INTEGER
+                      name: source_type
+                      value: '0'
+                - type: graph
+                  x: '12'
+                  'y': '5'
+                  width: '12'
+                  height: '5'
+                  fields:
+                    - type: GRAPH
+                      name: graphid
+                      value:
+                        host: 'Template Bacula'
+                        name: 'Backup Full - Transfer rate'
+                    - type: INTEGER
+                      name: source_type
+                      value: '0'
+        - uuid: 055bb8ccd72842dc9f3ca8cecc4a82d8
+          name: 'Backup Incremental'
+          pages:
+            - widgets:
+                - type: graph
+                  width: '12'
+                  height: '5'
+                  fields:
+                    - type: GRAPH
+                      name: graphid
+                      value:
+                        host: 'Template Bacula'
+                        name: 'Backup Incremental - Bytes transferred'
+                    - type: INTEGER
+                      name: source_type
+                      value: '0'
+                - type: graph
+                  'y': '5'
+                  width: '12'
+                  height: '5'
+                  fields:
+                    - type: GRAPH
+                      name: graphid
+                      value:
+                        host: 'Template Bacula'
+                        name: 'Backup Incremental - Elapsed time'
+                    - type: INTEGER
+                      name: source_type
+                      value: '0'
+                - type: graph
+                  'y': '10'
+                  width: '12'
+                  height: '5'
+                  fields:
+                    - type: GRAPH
+                      name: graphid
+                      value:
+                        host: 'Template Bacula'
+                        name: 'Backup Incremental - Compression rate'
+                    - type: INTEGER
+                      name: source_type
+                      value: '0'
+                - type: graph
+                  x: '12'
+                  width: '12'
+                  height: '5'
+                  fields:
+                    - type: GRAPH
+                      name: graphid
+                      value:
+                        host: 'Template Bacula'
+                        name: 'Backup Incremental - Files transferred'
+                    - type: INTEGER
+                      name: source_type
+                      value: '0'
+                - type: graph
+                  x: '12'
+                  'y': '5'
+                  width: '12'
+                  height: '5'
+                  fields:
+                    - type: GRAPH
+                      name: graphid
+                      value:
+                        host: 'Template Bacula'
+                        name: 'Backup Incremental - Transfer rate'
+                    - type: INTEGER
+                      name: source_type
+                      value: '0'
+  graphs:
+    - uuid: 7ee4319d44884fd0a3453483112ba612
+      name: 'Backup Differential - Bytes transferred'
+      ymin_type_1: FIXED
+      graph_items:
+        - drawtype: GRADIENT_LINE
+          color: 9999FF
+          item:
+            host: 'Template Bacula'
+            key: bacula.diff.job.bytes
+        - sortorder: '1'
+          drawtype: BOLD_LINE
+          color: C80000
+          item:
+            host: 'Template Bacula'
+            key: bacula.diff.job.status
+    - uuid: bbadd2c23cd74d31847316842e89a991
+      name: 'Backup Differential - Compression rate'
+      ymin_type_1: FIXED
+      graph_items:
+        - drawtype: GRADIENT_LINE
+          color: FF9999
+          item:
+            host: 'Template Bacula'
+            key: bacula.diff.job.compr
+        - sortorder: '1'
+          drawtype: BOLD_LINE
+          color: C80000
+          item:
+            host: 'Template Bacula'
+            key: bacula.diff.job.status
+    - uuid: 55cd17b7e2984a3eb8a0c983d7952e38
+      name: 'Backup Differential - Elapsed time'
+      ymin_type_1: FIXED
+      graph_items:
+        - drawtype: GRADIENT_LINE
+          color: 00EEEE
+          item:
+            host: 'Template Bacula'
+            key: bacula.diff.job.time
+        - sortorder: '1'
+          drawtype: BOLD_LINE
+          color: C80000
+          item:
+            host: 'Template Bacula'
+            key: bacula.diff.job.status
+    - uuid: a62b71155883443bb732360535d6efd4
+      name: 'Backup Differential - Files transferred'
+      ymin_type_1: FIXED
+      graph_items:
+        - drawtype: GRADIENT_LINE
+          color: 00C800
+          item:
+            host: 'Template Bacula'
+            key: bacula.diff.job.files
+        - sortorder: '1'
+          drawtype: BOLD_LINE
+          color: C80000
+          item:
+            host: 'Template Bacula'
+            key: bacula.diff.job.status
+    - uuid: b9770c5f16b445c2921edff3e100c2b4
+      name: 'Backup Differential - Transfer rate'
+      ymin_type_1: FIXED
+      graph_items:
+        - drawtype: GRADIENT_LINE
+          color: CCCC00
+          item:
+            host: 'Template Bacula'
+            key: bacula.diff.job.speed
+        - sortorder: '1'
+          drawtype: BOLD_LINE
+          color: C80000
+          item:
+            host: 'Template Bacula'
+            key: bacula.diff.job.status
+    - uuid: 12ade03af16940fb9a570f4e3875bddf
+      name: 'Backup Full - Bytes transferred'
+      ymin_type_1: FIXED
+      graph_items:
+        - drawtype: GRADIENT_LINE
+          color: 9999FF
+          item:
+            host: 'Template Bacula'
+            key: bacula.full.job.bytes
+        - sortorder: '1'
+          drawtype: BOLD_LINE
+          color: C80000
+          item:
+            host: 'Template Bacula'
+            key: bacula.full.job.status
+    - uuid: cafccb411b934f8a8608e39fcb901690
+      name: 'Backup Full - Compression rate'
+      ymin_type_1: FIXED
+      graph_items:
+        - drawtype: GRADIENT_LINE
+          color: FF9999
+          item:
+            host: 'Template Bacula'
+            key: bacula.full.job.compr
+        - sortorder: '1'
+          drawtype: BOLD_LINE
+          color: C80000
+          item:
+            host: 'Template Bacula'
+            key: bacula.full.job.status
+    - uuid: 28c4dea5507e4e23968e4dfd16220dac
+      name: 'Backup Full - Elapsed time'
+      ymin_type_1: FIXED
+      graph_items:
+        - drawtype: GRADIENT_LINE
+          color: 00EEEE
+          item:
+            host: 'Template Bacula'
+            key: bacula.full.job.time
+        - sortorder: '1'
+          drawtype: BOLD_LINE
+          color: C80000
+          item:
+            host: 'Template Bacula'
+            key: bacula.full.job.status
+    - uuid: b8985ea7b2e142a18030f74b5dc443bd
+      name: 'Backup Full - Files transferred'
+      ymin_type_1: FIXED
+      graph_items:
+        - drawtype: GRADIENT_LINE
+          color: 00C800
+          item:
+            host: 'Template Bacula'
+            key: bacula.full.job.files
+        - sortorder: '1'
+          drawtype: BOLD_LINE
+          color: C80000
+          item:
+            host: 'Template Bacula'
+            key: bacula.full.job.status
+    - uuid: fad65525f1b74057b699391b9abc6e21
+      name: 'Backup Full - Transfer rate'
+      ymin_type_1: FIXED
+      graph_items:
+        - drawtype: GRADIENT_LINE
+          color: CCCC00
+          item:
+            host: 'Template Bacula'
+            key: bacula.full.job.speed
+        - sortorder: '1'
+          drawtype: BOLD_LINE
+          color: C80000
+          item:
+            host: 'Template Bacula'
+            key: bacula.full.job.status
+    - uuid: c67f7184e7fa4488848ba1f9be8fb659
+      name: 'Backup Incremental - Bytes transferred'
+      ymin_type_1: FIXED
+      graph_items:
+        - drawtype: GRADIENT_LINE
+          color: 9999FF
+          item:
+            host: 'Template Bacula'
+            key: bacula.incr.job.bytes
+        - sortorder: '1'
+          drawtype: BOLD_LINE
+          color: C80000
+          item:
+            host: 'Template Bacula'
+            key: bacula.incr.job.status
+    - uuid: 1eefdf715da840cc8feb479b8efd3464
+      name: 'Backup Incremental - Compression rate'
+      ymin_type_1: FIXED
+      graph_items:
+        - drawtype: GRADIENT_LINE
+          color: FF9999
+          item:
+            host: 'Template Bacula'
+            key: bacula.incr.job.compr
+        - sortorder: '1'
+          drawtype: BOLD_LINE
+          color: C80000
+          item:
+            host: 'Template Bacula'
+            key: bacula.incr.job.status
+    - uuid: dd22cfe411af43fea7d5cd7e8164a801
+      name: 'Backup Incremental - Elapsed time'
+      ymin_type_1: FIXED
+      graph_items:
+        - drawtype: GRADIENT_LINE
+          color: 00EEEE
+          item:
+            host: 'Template Bacula'
+            key: bacula.incr.job.time
+        - sortorder: '1'
+          drawtype: BOLD_LINE
+          color: C80000
+          item:
+            host: 'Template Bacula'
+            key: bacula.incr.job.status
+    - uuid: c7690e1f18cf472997fa87b62b1c1c85
+      name: 'Backup Incremental - Files transferred'
+      ymin_type_1: FIXED
+      graph_items:
+        - drawtype: GRADIENT_LINE
+          color: 00C800
+          item:
+            host: 'Template Bacula'
+            key: bacula.incr.job.files
+        - sortorder: '1'
+          drawtype: BOLD_LINE
+          color: C80000
+          item:
+            host: 'Template Bacula'
+            key: bacula.incr.job.status
+    - uuid: 2c3c5a9c60734c9d841853eef2425ad2
+      name: 'Backup Incremental - Transfer rate'
+      ymin_type_1: FIXED
+      graph_items:
+        - drawtype: GRADIENT_LINE
+          color: CCCC00
+          item:
+            host: 'Template Bacula'
+            key: bacula.incr.job.speed
+        - sortorder: '1'
+          drawtype: BOLD_LINE
+          color: C80000
+          item:
+            host: 'Template Bacula'
+            key: bacula.incr.job.status
